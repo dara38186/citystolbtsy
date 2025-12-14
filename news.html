@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Столбцы - Новости</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="im/gerb.png" type="image/png">
+    <meta name="keywords" content="новости столбцов, новости Столбцов, события Столбцы" />
+    <meta name="description" content="Новости и события города Столбцы">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>/* ================================
+   Новости - Главный блок
+   ================================ */
+.news-hero {
+    background: linear-gradient(135deg, rgba(29,6,98,0.9), rgba(74,110,224,0.8)),
+                url('im/collage_1x7.jpg') center/cover no-repeat;
+    padding: 80px 20px;
+    text-align: center;
+    color: white;
+    border-radius: 20px;
+    max-width: 1200px;
+    margin: 30px auto;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.news-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.news-hero p {
+    font-size: 1.3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* ================================
+   Контейнеры
+   ================================ */
+.news-container,
+.featured-news,
+.calendar-section,
+.subscribe-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ================================
+   Сетка новостей и событий
+   ================================ */
+.news-grid,
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin: 40px 0;
+}
+
+/* ================================
+   Карточки
+   ================================ */
+.news-card,
+.calendar-card,
+.featured-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ================================
+   Изображения
+   ================================ */
+.news-image,
+.featured-image {
+    width: 100%;
+    object-fit: cover;
+}
+
+.featured-image {
+    height: 400px;
+}
+
+/* ================================
+   Контент карточек
+   ================================ */
+.news-content,
+.featured-content {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Новости */
+.news-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.news-date {
+    color: #4a6ee0;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.news-category {
+    background: #f0f7ff;
+    color: #4a6ee0;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.news-title {
+    font-size: 1.4rem;
+    color: #1d0662;
+    margin-bottom: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.news-excerpt {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.news-link {
+    color: #4a6ee0;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+}
+
+.news-link:hover {
+    color: #1d0662;
+}
+
+/* Featured */
+.featured-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    margin-top: 40px;
+}
+
+.featured-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.featured-title {
+    font-size: 2rem;
+    color: #1d0662;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.featured-excerpt {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* ================================
+   Подписка
+   ================================ */
+.subscribe-section {
+    background: linear-gradient(135deg, #1d0662, #4a6ee0);
+    padding: 60px;
+    border-radius: 25px;
+    margin: 80px 0;
+    color: white;
+    text-align: center;
+}
+
+.subscribe-form {
+    max-width: 600px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.subscribe-input {
+    flex: 1;
+    min-width: 250px;
+    padding: 18px 25px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+}
+
+.subscribe-btn {
+    background: #ffda57;
+    color: #1d0662;
+    border: none;
+    padding: 18px 40px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.subscribe-btn:hover {
+    background: white;
+}
+
+/* ================================
+   События / Календарь
+   ================================ */
+.calendar-card {
+    padding: 30px;
+    border-left: 5px solid #ffda57;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.calendar-date {
+    color: #ff6b6b;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Счетчик новостей */
+.news-counter {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+    margin: 40px auto 0;
+    padding: 20px;
+    background: #f8f9ff;
+    border-radius: 15px;
+    max-width: 500px;
+}
+
+/* ================================
+   Адаптив
+   ================================ */
+@media(max-width: 992px) {
+    .featured-card { grid-template-columns: 1fr; }
+    .featured-image { height: 300px; }
+}
+
+@media(max-width: 768px) {
+    .news-hero { padding: 50px 20px; }
+    .news-hero h1 { font-size: 2.2rem; }
+    .news-hero p { font-size: 1.1rem; }
+    .subscribe-section { padding: 40px 20px; }
+    .subscribe-form { flex-direction: column; }
+    .subscribe-input { width: 100%; }
+    .featured-title { font-size: 1.6rem; }
+}
+
+@media(max-width: 480px) {
+    .news-grid { grid-template-columns: 1fr; }
+    .featured-image { height: 200px; }
+}
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-city"></i>
+            Столбцы - город для жизни
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+            <li><a href="news.html" class="active"><i class="fas fa-newspaper"></i> Новости</a></li>
+            <li class="dropdown">
+                <a href="about.html" class="dropbtn"><i class="fas fa-info-circle"></i> О городе</a>
+                <ul class="dropdown-content">
+                    <li><a href="about.html#management"><i class="fas fa-users"></i> Управление</a></li>
+                    <li><a href="about.html#gallery"><i class="fas fa-images"></i> Галерея</a></li>
+                    <li><a href="about.html#infrastructure"><i class="fas fa-road"></i> Инфраструктура</a></li>
+                </ul>
+            </li>
+            <li><a href="history.html"><i class="fas fa-landmark"></i> История</a></li>
+        </ul>
+    </nav>
+
+    <div class="nov">
+        <h1>Новости города</h1>
+        <p>Самые свежие события и важные объявления</p>
+    </div>
+
+    <div class="main-content">
+        <div class="featured-news">
+            <h2 class="section-title">Главная новость</h2>
+            
+            <div class="featured-card">
+                <img src="im/n1.jpeg"" alt="Новый парк" class="featured-image">
+                <div class="featured-content">
+                    <span class="featured-badge">Важное</span>
+                    <h3 class="featured-title">В Столбцах открылся новый современный парк отдыха</h3>
+                    <p class="featured-excerpt">После масштабной реконструкции в центре города открылся обновленный парк с детскими площадками, спортивными зонами и зонами отдыха. Проект реализован в рамках программы благоустройства городской среды. Жители города уже оценили новые возможности для отдыха и прогулок.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-container">
+            <h2 class="section-title">Последние новости</h2>
+            
+            <div class="news-grid">
+                <div class="news-card">
+                    <img src="im/n2.jpeg" alt="Семинар" class="news-image">
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-date"><i class="far fa-calendar"></i> 3 декабря 2025</span>
+                            <span class="news-category">Образование</span>
+                        </div>
+                        <h3 class="news-title">В Столбцах состоялся обучающий семинар по развитию социального партнерства</h3>
+                        <p class="news-excerpt">Семинар "Развиваемся вместе!" собрал представителей нанимателей и профсоюзов для обсуждения современных подходов к социальному партнерству. Участники обменялись опытом и наметили пути сотрудничества.</p>
+                    </div>
+                </div>
+                
+                <!-- Новость 4 -->
+                <div class="news-card">
+                    <img src="im/n3.jpeg" alt="Спортивные соревнования" class="news-image">
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-date"><i class="far fa-calendar"></i> 14 декабря 2025</span>
+                            <span class="news-category">Спорт</span>
+                        </div>
+                        <h3 class="news-title">Мини-футбол: как сыграл “Кронон” с “Металлургом”</h3>
+                        <p class="news-excerpt">В Столбцах на площадке ФОК ГУ “ДЮСШ Столбцовского района” прошел матч пятого тура между МФК “Кронон” (Столбцы) и МФК “Металлург” (Молодечно). “Кронон” терпит четвертое поражение в сезоне и занимает девятое место в таблице с тремя очками.</p>
+        
+                    </div>
+                </div>
+                
+                <!-- Новость 5 -->
+                <div class="news-card">
+                    <img src="im/n4.jpeg" alt="Конкурс" class="news-image">
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-date"><i class="far fa-calendar"></i> 3 декабря 2025</span>
+                            <span class="news-category">Конкурс</span>
+                        </div>
+                        <h3 class="news-title">РОЗЫГРЫШ ПРИЗОВ ОТ ГАЗЕТЫ «ПРАМЕНЬ»!</h3>
+                        <p class="news-excerpt">Редакция газеты «Прамень» приглашает всех подписчиков принять участие в розыгрыше отличных призов! Среди призов — бытовая техника, подарочные сертификаты и годовая подписка на газету.</p>
+                    </div>
+                </div>
+                
+                <!-- Новость 6 -->
+                <div class="news-card">
+                    <img src="im/n5.jpeg" alt="Выставка" class="news-image">
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-date"><i class="far fa-calendar"></i> 13 декабря 2025</span>
+                            <span class="news-category">Искусство</span>
+                        </div>
+                        <h3 class="news-title">Арт-фестиваль «Зажигаем звезды» даст старт акции «Наши дети» в Минской области</h3>
+                        <p class="news-excerpt">Фестиваль пройдет 15 декабря в аг.Старый Свержень.
+
+🎶Участники мероприятия, среди которых учащиеся учреждений общего среднего, специального, дополнительного образования детей и молодежи, центров коррекционно-развивающего обучения и реабилитации, смогут раскрыть свои таланты в различных номинациях
+                          
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="calendar-section">
+            <h2 class="section-title">Ближайшие события</h2>
+            
+            <div class="calendar-grid">
+                <div class="calendar-card">
+                    <div class="calendar-date">
+                        <i class="far fa-calendar-alt"></i>
+                        15 декабря 2025
+                    </div>
+                    <h3>Новогодний бал для молодежи</h3>
+                    <p>Городской Дом культуры. Начало в 18:00. Вход свободный. Тематическая вечеринка с конкурсами и призами.</p>
+                </div>
+                
+                <div class="calendar-card">
+                    <div class="calendar-date">
+                        <i class="far fa-calendar-alt"></i>
+                        20 декабря 2025
+                    </div>
+                    <h3>Ярмарка ремесленников</h3>
+                    <p>Центральная площадь. С 10:00 до 18:00. Мастер-классы, сувениры ручной работы, угощения.</p>
+                </div>
+                
+                <div class="calendar-card">
+                    <div class="calendar-date">
+                        <i class="far fa-calendar-alt"></i>
+                        25 декабря 2025
+                    </div>
+                    <h3>Рождественский концерт</h3>
+                    <p>Костел Святой Анны. Начало в 19:00. Хоровое пение, органная музыка, традиционные колядки.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="subscribe-section">
+            <h2 style="color: white; font-size: 2.5rem; margin-bottom: 20px;">Подпишитесь на новости</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto;">Будьте в курсе всех событий города. Получайте самые свежие новости на свою электронную почту</p>
+            
+            <form class="subscribe-form">
+                <input type="email" placeholder="Ваш email адрес" class="subscribe-input" required>
+                <button type="submit" class="subscribe-btn">Подписаться на новости</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-nav">
+            <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+            <a href="news.html"><i class="fas fa-newspaper"></i> Новости</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> О городе</a>
+            <a href="history.html"><i class="fas fa-landmark"></i> История</a>
+        </div>
+        <p class="copyright">© 2025. Город Столбцы. Официальный сайт.</p>
+    </footer>
+
+    <script>
+    // Подписка на новости
+    const subscribeForm = document.querySelector('.subscribe-form');
+    if (subscribeForm) {
+        subscribeForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('.subscribe-input');
+            
+            if (!emailInput) return;
+            
+            const email = emailInput.value.trim();
+            
+            if (email && email.includes('@') && email.includes('.')) {
+                alert('Спасибо за подписку! Теперь вы будете получать новости города Столбцы на email: ' + email);
+                this.reset();
+            } else {
+                alert('Пожалуйста, введите корректный email адрес');
+                emailInput.focus();
+            }
+        });
+    }
+    </script>
+</body>
+</html>

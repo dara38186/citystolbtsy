@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Столбцы - История города</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="im/gerb.png" type="image/png">
+    <meta name="keywords" content="история столбцов, история Столбцов, история столбцовского района" />
+    <meta name="description" content="История города Столбцы с основания до наших дней">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+/* Стили только для страницы истории */
+.history-hero {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 20px;
+    margin: 30px auto;
+    max-width: 1200px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.histphoto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8);
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, rgba(29,6,98,0.7), rgba(74,110,224,0.5));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    max-width: 800px;
+    line-height: 1.6;
+}
+
+/* ===== TIMELINE ===== */
+
+.timeline-section {
+    margin: 80px 0;
+}
+
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 40px 20px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #4a6ee0, #ffda57);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    margin: 60px 0;
+    position: relative;
+    width: 45%;
+    padding: 30px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.1);
+}
+
+.timeline-item:nth-child(odd) {
+    margin-right: auto;
+}
+
+.timeline-item:nth-child(even) {
+    margin-left: auto;
+}
+
+.timeline-year {
+    position: absolute;
+    top: -25px;
+    background: linear-gradient(135deg, #4a6ee0, #1d0662);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.timeline-item:nth-child(odd) .timeline-year {
+    right: -70px;
+}
+
+.timeline-item:nth-child(even) .timeline-year {
+    left: -70px;
+}
+
+.timeline-icon {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: 4px solid #4a6ee0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4a6ee0;
+    transform: translateY(-50%);
+}
+
+.timeline-item:nth-child(odd) .timeline-icon {
+    right: -62px;
+}
+
+.timeline-item:nth-child(even) .timeline-icon {
+    left: -62px;
+}
+
+.timeline-content h3 {
+    color: #1d0662;
+    margin-bottom: 15px;
+}
+
+.timeline-content p {
+    color: #555;
+    line-height: 1.7;
+}
+
+/* ===== HERITAGE ===== */
+
+.heritage-section {
+    background: linear-gradient(135deg, #f8f9ff, #e3f2ff);
+    padding: 60px;
+    border-radius: 25px;
+    margin: 80px 0;
+}
+
+.heritage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.heritage-item {
+    text-align: center;
+    padding: 30px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+.heritage-icon {
+    font-size: 50px;
+    color: #4a6ee0;
+    margin-bottom: 20px;
+}
+
+/* ===== MODERN ===== */
+
+.modern-section {
+    margin: 80px 0;
+}
+
+.modern-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.modern-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    border-top: 5px solid #ffda57;
+}
+
+/* ===== ADAPTIVE ===== */
+
+@media (max-width: 992px) {
+    .timeline::before {
+        left: 30px;
+    }
+
+    .timeline-item {
+        width: calc(100% - 80px);
+        margin-left: 80px !important;
+    }
+
+    .timeline-year {
+        left: -100px !important;
+    }
+
+    .timeline-icon {
+        left: -62px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.2rem; }
+    .hero-subtitle { font-size: 1.1rem; }
+    .heritage-section { padding: 30px; }
+}
+
+@media (max-width: 480px) {
+    .history-hero { height: 300px; }
+    .hero-title { font-size: 1.8rem; }
+    .modern-content { grid-template-columns: 1fr; }
+}
+</style>
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-city"></i>
+            Столбцы - город для жизни
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+            <li><a href="news.html"><i class="fas fa-newspaper"></i> Новости</a></li>
+            <li class="dropdown">
+                <a href="about.html" class="dropbtn"><i class="fas fa-info-circle"></i> О городе</a>
+                <ul class="dropdown-content">
+                    <li><a href="about.html#management"><i class="fas fa-users"></i> Управление</a></li>
+                    <li><a href="about.html#gallery"><i class="fas fa-images"></i> Галерея</a></li>
+                    <li><a href="about.html#infrastructure"><i class="fas fa-road"></i> Инфраструктура</a></li>
+                </ul>
+            </li>
+            <li><a href="history.html" class="active"><i class="fas fa-landmark"></i> История</a></li>
+        </ul>
+    </nav>
+
+    <div class="nov">
+        <h1>История города Столбцы</h1>
+        <p>Богатое прошлое нашего города</p>
+    </div>
+
+    <div class="main-content">
+        <div class="history-hero">
+            <img class="histphoto" src="im/collage_1x7.jpg" alt="Историческая фотография города">
+            <div class="hero-overlay">
+                <h2 class="hero-title">Более 500 лет истории</h2>
+                <p class="hero-subtitle">От первого упоминания в летописях до современного развивающегося города — путь, наполненный событиями, культурой и традициями</p>
+            </div>
+        </div>
+
+        <div class="timeline-section">
+            <h2 class="section-title">Хронология истории</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1511</div>
+                    <div class="timeline-icon"><i class="fas fa-scroll"></i></div>
+                    <div class="timeline-content">
+                        <h3>Первое упоминание</h3>
+                        <p>Первое документальное упоминание о поселении Столбцы в Великом княжестве Литовском. Поселение развивалось как торговый пункт на пути Минск–Брест.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1593</div>
+                    <div class="timeline-icon"><i class="fas fa-crown"></i></div>
+                    <div class="timeline-content">
+                        <h3>Официальное основание</h3>
+                        <p>Гальшка Кмитянка, вдова кричевского старосты Николая Слушки, официально основывает местечко. Город получает магдебургское право и начинает быстро развиваться.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">XVII-XVIII вв.</div>
+                    <div class="timeline-icon"><i class="fas fa-chess-rook"></i></div>
+                    <div class="timeline-content">
+                        <h3>Владение магнатскими родами</h3>
+                        <p>Город переходит во владение Радзивиллов, Слушков, Денгофов и Чарторыйских. Строятся первые каменные здания, развивается торговля и ремесла.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1793</div>
+                    <div class="timeline-icon"><i class="fas fa-flag"></i></div>
+                    <div class="timeline-content">
+                        <h3>В составе Российской империи</h3>
+                        <p>После второго раздела Речи Посполитой Столбцы входят в состав Российской империи как местечко Минской губернии.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1886</div>
+                    <div class="timeline-icon"><i class="fas fa-train"></i></div>
+                    <div class="timeline-content">
+                        <h3>Железнодорожная станция</h3>
+                        <p>Через Столбцы проходит железная дорога Минск–Барановичи, что дает мощный толчок к развитию промышленности и торговли.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1919-1939</div>
+                    <div class="timeline-icon"><i class="fas fa-exchange-alt"></i></div>
+                    <div class="timeline-content">
+                        <h3>Польский период</h3>
+                        <p>После Рижского мирного договора Столбцы входят в состав Польши. Развивается местное самоуправление, образование и культура.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1939</div>
+                    <div class="timeline-icon"><i class="fas fa-star"></i></div>
+                    <div class="timeline-content">
+                        <h3>В составе БССР</h3>
+                        <p>Город входит в состав Белорусской ССР, становится районным центром. Начинается советский период развития.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1941-1944</div>
+                    <div class="timeline-icon"><i class="fas fa-peace"></i></div>
+                    <div class="timeline-content">
+                        <h3>Годы войны</h3>
+                        <p>Оккупация немецкими войсками. Активное партизанское движение. Освобождение города в июле 1944 года.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1978</div>
+                    <div class="timeline-icon"><i class="fas fa-city"></i></div>
+                    <div class="timeline-content">
+                        <h3>Статус города</h3>
+                        <p>Столбцы получают официальный статус города. Начинается активное строительство жилых микрорайонов и социальных объектов.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2006</div>
+                    <div class="timeline-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="timeline-content">
+                        <h3>Современные символы</h3>
+                        <p>Утверждены современные герб и флаг города с изображением яхты на волнах, символизирующей связь с речным торговым путем.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="heritage-section">
+            <h2 class="section-title">Культурное наследие</h2>
+            
+            <div class="heritage-grid">
+                <div class="heritage-item">
+                    <div class="heritage-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Литературная традиция</h3>
+                    <p>Край, давший миру Якуба Коласа и других выдающихся литераторов. Ежегодно проводятся литературные чтения и фестивали.</p>
+                </div>
+                
+                <div class="heritage-item">
+                    <div class="heritage-icon">
+                        <i class="fas fa-theater-masks"></i>
+                    </div>
+                    <h3>Народные промыслы</h3>
+                    <p>Сохранились традиции ткачества, вышивки, гончарства. В музеях представлены уникальные образцы народного творчества.</p>
+                </div>
+                
+                <div class="heritage-item">
+                    <div class="heritage-icon">
+                        <i class="fas fa-church"></i>
+                    </div>
+                    <h3>Архитектурные памятники</h3>
+                    <p>Сохранившиеся здания XIX-XX веков, православные и католические храмы, памятники гражданской архитектуры.</p>
+                </div>
+                
+                <div class="heritage-item">
+                    <div class="heritage-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Музыкальные традиции</h3>
+                    <p>Богатые фольклорные традиции, народные песни и танцы. Действует музыкальная школа и народные коллективы.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="modern-section">
+            <h2 class="section-title">Современные Столбцы</h2>
+            
+            <div class="modern-content">
+                <div class="modern-card">
+                    <h3><i class="fas fa-chart-line"></i> Экономическое развитие</h3>
+                    <p>Сегодня Столбцы — динамично развивающийся город с современной промышленностью, сельским хозяйством и сферой услуг. Действуют предприятия пищевой, деревообрабатывающей и строительной отраслей.</p>
+                </div>
+                
+                <div class="modern-card">
+                    <h3><i class="fas fa-graduation-cap"></i> Образование и наука</h3>
+                    <p>В городе работают современные учебные заведения, включая школы, лицей, музыкальную и художественную школы. Развивается сотрудничество с вузами Минска.</p>
+                </div>
+                
+                <div class="modern-card">
+                    <h3><i class="fas fa-heart"></i> Социальная сфера</h3>
+                    <p>Созданы комфортные условия для жизни: современное жилье, благоустроенные дворы и парки, развитая сеть медицинских и социальных учреждений.</p>
+                </div>
+                
+                <div class="modern-card">
+                    <h3><i class="fas fa-globe-europe"></i> Туризм и культура</h3>
+                    <p>Город привлекает туристов богатым историческим наследием, музеями, фестивалями. Развивается агроэкотуризм, создаются новые туристические маршруты.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-nav">
+            <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+            <a href="news.html"><i class="fas fa-newspaper"></i> Новости</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> О городе</a>
+            <a href="history.html"><i class="fas fa-landmark"></i> История</a>
+        </div>
+        <p class="copyright">© 2025. Город Столбцы. Официальный сайт.</p>
+    </footer>
+</body>
+</html>

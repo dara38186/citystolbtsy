@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Столбцы - Главная</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="im/gerb.png" type="image/png">
+    <meta name="keywords" content="Столбцы, столбцы" />
+    <meta name="description" content="Официальный сайт города Столбцы. Новости. Управление. История. Галерея">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+       /* Стили только для главной страницы */
+.hero-video {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.video-box {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: all 0.4s;
+}
+
+.video-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.video-box .caption {
+    font-size: 22px;
+    padding: 20px;
+    text-align: center;
+    font-weight: 600;
+    color: #1d0662;
+    background: #f8f9ff;
+    border-bottom: 3px solid #4a6ee0;
+}
+
+video {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Карточки особенностей */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 60px 20px;
+}
+
+.feature-card {
+    background: #fff;
+    padding: 30px;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.feature-icon {
+    font-size: 50px;
+    color: #4a6ee0;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+/* Контакты и форма */
+.contact-section {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 50px;
+    background: linear-gradient(135deg, #e3f2ff 0%, #d1e8ff 100%);
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.contact-item {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.contact-item h4 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-item a {
+    color: #4a6ee0;
+    display: block;
+    padding: 8px 0;
+}
+
+.contact-item a:hover {
+    color: #1d0662;
+    transform: translateX(5px);
+}
+
+/* Официальная ссылка */
+.official-link {
+    display: block;
+    text-align: center;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+    color: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 30px;
+    transition: all 0.3s;
+    box-shadow: 0 8px 20px rgba(255,107,107,0.3);
+}
+
+.official-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(255,107,107,0.4);
+}
+
+/* Форма обратной связи */
+.feedback-form {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    margin-top: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #4a6ee0;
+    box-shadow: 0 0 0 3px rgba(74,110,224,0.1);
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #4a6ee0 0%, #1d0662 100%);
+    color: #fff;
+    border: none;
+    padding: 16px 40px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(29,6,98,0.2);
+}
+
+/* Адаптив */
+@media (max-width: 992px) {
+    .hero-video {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .features {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-video,
+    .features,
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .video-box .caption {
+        font-size: 20px;
+        padding: 15px;
+    }
+
+    .feature-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .contact-item h4 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    video {
+        height: 200px;
+    }
+
+    .video-box .caption {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .feature-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .submit-btn {
+        padding: 14px 30px;
+        font-size: 16px;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+   <nav class="navbar">
+    <div class="logo">
+        <i class="fas fa-city"></i>
+        Столбцы - город для жизни
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="index.html" class="active"><i class="fas fa-home"></i> Главная</a></li>
+        <li><a href="news.html"><i class="fas fa-newspaper"></i> Новости</a></li>
+        <li class="dropdown">
+            <a href="about.html" class="dropbtn"><i class="fas fa-info-circle"></i> О городе</a>
+            <ul class="dropdown-content">
+                <li><a href="about.html#management"><i class="fas fa-users"></i> Управление</a></li>
+                <li><a href="about.html#gallery"><i class="fas fa-images"></i> Галерея</a></li>
+                    <li><a href="about.html#infrastructure"><i class="fas fa-road"></i> Инфраструктура</a></li>
+            </ul>
+        </li>
+        <li><a href="history.html"><i class="fas fa-landmark"></i> История</a></li>
+    </ul>
+</nav>
+    </nav>
+
+    <div class="nov">
+        <h1>Добро пожаловать в Столбцы!</h1>
+        <p>Город с богатой историей и прекрасными людьми</p>
+    </div>
+
+    <div class="main-content">
+        <div class="hero-video">
+            <div class="video-box">
+                <p class="caption">Экскурсия по городу</p>
+                <video src="im/video1.mp4" controls poster="im/v1.jpeg"></video>
+            </div>
+            
+            <div class="video-box">
+                <p class="caption">Культурные мероприятия</p>
+                <video src="im/video2.mp4" controls poster="im/v2.jpeg"></video>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h3>Историческое наследие</h3>
+                <p>Город с более чем 500-летней историей, сохранивший уникальные традиции</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-tree"></i>
+                </div>
+                <h3>Прекрасная природа</h3>
+                <p>Расположен на берегу реки Неман в живописном регионе</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Дружелюбное сообщество</h3>
+                <p>Более 17 000 жителей создают уникальную атмосферу города</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Культурный центр</h3>
+                <p>Родина Якуба Коласа и других выдающихся деятелей</p>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2 class="section-title">Наши контакты</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h4><i class="fas fa-phone"></i> Телефоны</h4>
+                    <p><a href="tel:+375292931445">Горячая линия: +375 (29) 293-14-45</a></p>
+                    <p><a href="tel:142">"Одно окно": 142</a></p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4><i class="fas fa-envelope"></i> Электронная почта</h4>
+                    <p><a href="mailto:info@stolbtcy.gov.by">info@stolbtcy.gov.by</a></p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4><i class="fas fa-hashtag"></i> Социальные сети</h4>
+                    <p><a href="https://www.instagram.com/stolbtsy.city/channel/"><i class="fab fa-instagram"></i> Instagram: stolbtsy.city</a></p>
+                    <p><a href="https://t.me/s/prostolbtsy/69409?ysclid=mj4nh0b8j4927531664"><i class="fab fa-telegram"></i> Telegram каналы</a></p>
+                </div>
+            </div>
+            
+            <a href="https://stolbtsy.gov.by" target="_blank" class="official-link">
+                <i class="fas fa-external-link-alt"></i> Официальный сайт райисполкома
+            </a>
+            
+            <div class="feedback-form">
+                <h3 style="text-align: center; color: #1d0662; margin-bottom: 30px;">
+                    <i class="fas fa-comments"></i> Обратная связь
+                </h3>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Ваш email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" rows="5" placeholder="Ваше сообщение..." required></textarea>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Отправить сообщение
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-nav">
+            <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+            <a href="news.html"><i class="fas fa-newspaper"></i> Новости</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> О городе</a>
+            <a href="history.html"><i class="fas fa-landmark"></i> История</a>
+        </div>
+        <p class="copyright">© 2025. Город Столбцы. Официальный сайт.</p>
+    </footer>
+</body>
+</html>
