@@ -2,393 +2,208 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Столбцы - О городе</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="im/gerb.png" type="image/png">
+    <link rel="icon" href="gerb.png" type="image/png">
     <meta name="keywords" content="фото Столбцов, управление Столбцы, глава Столбцов, о Столбцах" />
-    <meta name="description" content="Сайт города Столбцы. Управление. Галерея. Основная информация">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-/* ===== ОСНОВНЫЕ БЛОКИ ===== */
-.info-section,
-.photo-box,
-.infra-item{
-    background:#fff;
-    border-radius:16px;
-    padding:25px;
+    <meta name="description" content="Сайт города Столбцы. Новости. Управление. История. Галерея">
+</head>
+
+<body>
+<style>
+    .pr, .gal {
+    text-align: center;
+    background: antiquewhite;
+    border: 3px solid #ffda57;
+    width: 90%;
+    padding: 15px;
+    margin: 30px auto;
+    font-size: 36px;
 }
-
-.info-section{
-    max-width:1200px;
-    margin:40px auto;
+.pr { border-radius: 70px; }
+.gal { border-radius: 10px; }
+/*  РУКОВОДСТВО */
+.photo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin: 40px 20px;
 }
-
-.section-title{
-    text-align:center;
-    margin:40px 0 20px;
+.photo-box {
+    background: white;
+    width: 180px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+    text-align: center;
 }
-
-/* ===== СЕТКИ ===== */
-.stats-grid,
-.info-grid,
-.photo-grid,
-.gallery-grid,
-.infra-grid{
-    display:grid;
-    gap:30px;
-}
-
-.stats-grid{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-.info-grid,
-.infra-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.photo-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
-.gallery-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
-
-/* ===== СТАТИСТИКА ===== */
-.stat-card{
-    background:#f0f7ff;
-    text-align:center;
-    padding:30px;
-    border-radius:16px;
-}
-
-.stat-number{
-    font-size:3rem;
-    font-weight:bold;
+.ph1 { 
+    font-size: 16px;
+    font-weight: bold;
     color:#1d0662;
-}
-
-.stat-label{
-    color:#4a6ee0;
-}
-
-/* ===== УПРАВЛЕНИЕ ===== */
-.pr,
-.gal{
-    text-align:center;
-    padding:25px;
-    font-size:2rem;
-    width:90%;
-    margin:40px auto;
-    border-radius:20px;
-}
-
-.pr{
-    background:#1d0662;
-    color:#fff;
-}
-
-.gal{
-    background:#ffda57;
-    color:#1d0662;
-}
-.gallery-img {
-    width: 100%;
-    height: auto;          
-    max-height: 220px;     
-    object-fit: contain;  
-    cursor: pointer;
-    transition: max-height 0.3s ease;
-}
-/* ===== ФОТО ===== */
-.ph1{
-    font-weight:bold;
-    min-height:70px;
+    min-height:60px;
     display:flex;
     align-items:center;
     justify-content:center;
 }
-
-.ph2{
-    font-size:14px;
+.ph2 { 
+    font-size: 14px;
+    color:#6495ED;
     margin-top:10px;
-    color:#4a6ee0;
+    font-style:italic;
 }
-
-.im1,
-.gallery-img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-    border-radius:12px;
+.im1 {
+    width: 150px;
+    height: 170px;
+    border: 3px solid #1d0662;
+    border-radius: 6px;
+    object-fit: cover;
 }
-
-/* ===== ГАЛЕРЕЯ ===== */
-.gallery-item{
-    border-radius:16px;
-    overflow:hidden;
-    cursor:pointer;
+/* ГАЛЕРЕЯ */
+#thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 40px 20px;
+    list-style: none;
 }
-
-/* ===== LIGHTBOX ===== */
-.lightbox{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.95);
-    justify-content:center;
-    align-items:center;
-    z-index:2000;
+#thumbs img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border: 3px solid #eeff00;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .3s;
 }
-
-.lightbox-content{
-    max-width:90%;
-    max-height:90%;
+#thumbs img:hover { 
+    transform: scale(1.05); 
 }
-
-.close-lightbox{
-    position:absolute;
-    top:20px;
-    right:30px;
-    color:#fff;
-    font-size:40px;
-    cursor:pointer;
+#thumbs img.active {
+    width: 90%;
+    max-width: 800px;
+    height: auto;
+    margin: 0 auto 30px;
+    display: block;
+    border-color: red;
 }
+</style>
+<nav class="navbar">
+    <div class="logo"> Столбцы - город для жизни </div>
 
-.lightbox-caption{
-    position:absolute;
-    bottom:20px;
-    width:100%;
-    text-align:center;
-    color:#fff;
-}
+    <ul class="nav-links">
+        <li><a href="index.html"> Главная </a></li>
+        <li><a href="news.html"> Новости </a></li>
+        
+        <li class="dropdown">
+            <a href="about.html" class="dropbtn"> О городе </a>
+            <ul class="dropdown-content">
+                <li><a href="about.html#management"> Управление </a></li>
+                <li><a href="about.html#gal"> Галерея </a></li>
+            </ul>
+        </li>
 
-/* ===== АДАПТИВ ===== */
-@media(max-width:768px){
-    .photo-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
-    .gallery-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
-    .pr,.gal{font-size:1.5rem}
-    .info-section{padding:20px;margin:20px}
-}
+        <li><a href="history.html"> История </a></li>
+    </ul>
+</nav>
 
-    </style>
-</head>
+<div class="nov">
+    <h1>О городе Столбцы</h1>
+    <p>Всё о нашем замечательном городе</p>
+</div>
 
-<body>
-    <nav class="navbar">
-        <div class="logo">
-            <i class="fas fa-city"></i>
-            Столбцы - город для жизни
-        </div>
-
-        <ul class="nav-links">
-            <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
-            <li><a href="news.html"><i class="fas fa-newspaper"></i> Новости</a></li>
-            <li class="dropdown">
-                <a href="about.html" class="dropbtn active"><i class="fas fa-info-circle"></i> О городе</a>
-                <ul class="dropdown-content">
-                    <li><a href="#management"><i class="fas fa-users"></i> Управление</a></li>
-                    <li><a href="#gallery"><i class="fas fa-images"></i> Галерея</a></li>
-                    <li><a href="#infrastructure"><i class="fas fa-road"></i> Инфраструктура</a></li>
-                </ul>
-            </li>
-            <li><a href="history.html"><i class="fas fa-landmark"></i> История</a></li>
-        </ul>
-    </nav>
-
-    <div class="nov">
-        <h1>О городе Столбцы</h1>
-        <p>Всё о нашем замечательном городе</p>
-    </div>
-
-    <div class="main-content">
-        <div class="info-section">
-            <h2 class="section-title">Основная информация</h2>
+<div style="padding: 20px; max-width: 1000px; margin: 0 auto;">
+    <h2 style="text-align: center; color: #1d0662;">Основная информация</h2>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+        <div>
+            <h3>Географическое положение</h3>
+            <p>Город расположен на берегу реки Неман, в 65 км от Минска.</p>
+            <p>Является административным центром Столбцовского района.</p>
             
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">17,000</div>
-                    <div class="stat-label">Жителей</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">12.5</div>
-                    <div class="stat-label">км² площадь</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">65</div>
-                    <div class="stat-label">км от Минска</div>
-                </div>
-            </div>
-            
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3><i class="fas fa-map-marker-alt"></i> Географическое положение</h3>
-                    <p>Город расположен на живописном берегу реки Неман, в 65 км от столицы Беларуси. Является административным центром Столбцовского района Минской области.</p>
-                    <p>Благодаря удобному расположению на пересечении транспортных путей, Столбцы являются важным экономическим и культурным центром региона.</p>
-                </div>
-                
-                <div class="info-card">
-                    <h3><i class="fas fa-cloud-sun"></i> Климат и природа</h3>
-                    <p>Умеренно-континентальный климат с мягкой зимой и тёплым летом создает благоприятные условия для жизни и отдыха.</p>
-                    <p>Город окружен живописными лесами и полями, а река Неман предлагает прекрасные возможности для рыбалки и водного отдыха.</p>
-                </div>
-                
-                <div class="info-card">
-                    <h3><i class="fas fa-gem"></i> Достопримечательности</h3>
-                    <p>• Исторический центр города</p>
-                    <p>• Музей Якуба Коласа</p>
-                    <p>• Православные и католические храмы</p>
-                    <p>• Памятники архитектуры XIX века</p>
-                    <p>• Набережная реки Неман</p>
-                </div>
-            </div>
+            <h3>Климат</h3>
+            <p>Умеренно-континентальный климат с мягкой зимой и тёплым летом.</p>
         </div>
-
-        <div class="infrastructure" id="infrastructure">
-            <h2 class="section-title">Инфраструктура</h2>
-            
-            <div class="infra-grid">
-                <div class="infra-item">
-                    <div class="infra-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Образование</h3>
-                    <p>4 общеобразовательных школы, 8 детских садов, музыкальная школа, художественная школа.</p>
-                </div>
-                
-                <div class="infra-item">
-                    <div class="infra-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h3>Здравоохранение</h3>
-                    <p>Центральная районная больница, поликлиника, стоматология, аптеки, женская консультация.</p>
-                </div>
-                
-                <div class="infra-item">
-                    <div class="infra-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>Торговля</h3>
-                    <p>Торговый центр, супермаркеты, рынок, множество магазинов и предприятий бытового обслуживания.</p>
-                </div>
-                
-                <div class="infra-item">
-                    <div class="infra-icon">
-                        <i class="fas fa-futbol"></i>
-                    </div>
-                    <h3>Спорт и отдых</h3>
-                    <p>Спортивный комплекс, стадион, бассейн, тренажерные залы, парки и скверы для отдыха.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="management-section" id="management">
-            <p class="pr">Управление города</p>
-
-            <div class="photo-grid">
-                <div class="photo-box">
-                    <p class="ph1">Атрушкевич Андрей Михайлович</p>
-                    <img class="im1" src="im/атрушкевич.jpg" alt="Председатель райисполкома">
-                    <p class="ph2">Председатель райисполкома</p>
-                </div>
-
-                <div class="photo-box">
-                    <p class="ph1">Бычковский Виталий Геннадьевич</p>
-                    <img class="im1" src="im/зам1.jpeg" alt="Первый заместитель">
-                    <p class="ph2">Первый заместитель председателя</p>
-                </div>
-
-                <div class="photo-box">
-                    <p class="ph1">Лысая Жанна Николаевна</p>
-                    <img class="im1" src="im/зам2.jpeg" alt="Заместитель">
-                    <p class="ph2">Заместитель председателя</p>
-                </div>
-
-                <div class="photo-box">
-                    <p class="ph1">Пашкевич Ирина Бонифациевна</p>
-                    <img class="im1" src="im/зам3.jpeg" alt="Заместитель">
-                    <p class="ph2">Заместитель председателя</p>
-                </div>
-
-                <div class="photo-box">
-                    <p class="ph1">Савицкий Вадим Валерьянович</p>
-                    <img class="im1" src="im/зам4.jpeg" alt="Заместитель">
-                    <p class="ph2">Заместитель председателя</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="gallery-section" id="gallery">
-            <div class="nov">
-                <h1>Фотогалерея города</h1>
-                <p>Лучшие фотографии нашего города</p>
-            </div>
-
-            <p class="gal">Фотографии Столбцов</p>
-
-            <div class="gallery-container">
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="im/1_1.png" alt="Центральная площадь Столбцов" class="gallery-img">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="im/2_1.jpg" alt="Набережная реки Неман" class="gallery-img">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="im/3_1.jpg" alt="Парк культуры и отдыха" class="gallery-img">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="im/4_1.jpg" alt="Исторические здания" class="gallery-img">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="im/5_1.jpg" alt="Спортивный комплекс" class="gallery-img">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="im/6_1.jpg" alt="Храм в Столбцах" class="gallery-img">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="im/7_1.jpg" alt="Зимний город" class="gallery-img">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="im/8_1.jpg" alt="Летний вечер в городе" class="gallery-img">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="im/9_1.jpg" alt="Праздничные мероприятия" class="gallery-img">
-                    </div>
-                </div>
-            </div>
+        
+        <div>
+            <h3>Демография</h3>
+            <p><strong>Население:</strong> около 17,000 человек</p>
+            <p><strong>Площадь:</strong> 12.5 км²</p>
+            <p><strong>Основан:</strong> 1511 год (первое упоминание)</p>
+            <p><strong>Статус города:</strong> с 1978 года</p>
         </div>
     </div>
+</div>
 
-    <footer class="footer">
-        <div class="footer-nav">
-            <a href="index.html"><i class="fas fa-home"></i> Главная</a>
-            <a href="news.html"><i class="fas fa-newspaper"></i> Новости</a>
-            <a href="about.html"><i class="fas fa-info-circle"></i> О городе</a>
-            <a href="history.html"><i class="fas fa-landmark"></i> История</a>
+<div id="management">
+    <p class="pr"> Управление города </p>
+
+    <div class="photo">
+        <div class="photo-box">
+            <p class="ph1"> Атрушкевич Андрей Михайлович </p>
+            <img class="im1" src="im/атрушкевич.jpg" alt="Председатель">
+            <p class="ph2"> Председатель райисполкома </p>
         </div>
-        <p class="copyright">© 2025. Город Столбцы. Официальный сайт.</p>
-    </footer>
 
-    <div class="lightbox">
-        <span class="close-lightbox">&times;</span>
-        <img class="lightbox-content" src="" alt="">
-        <div class="lightbox-caption"></div>
+        <div class="photo-box">
+            <p class="ph1"> Бычковский Виталий Геннадьевич </p>
+            <img class="im1" src="im/зам1.jpeg" alt="Первый заместитель">
+            <p class="ph2"> Первый заместитель председателя </p>
+        </div>
+
+        <div class="photo-box">
+            <p class="ph1"> Лысая Жанна Николаевна </p>
+            <img class="im1" src="im/зам2.jpeg" alt="Заместитель">
+            <p class="ph2"> Заместитель председателя </p>
+        </div>
+
+        <div class="photo-box">
+            <p class="ph1"> Пашкевич Ирина Бонифациевна </p>
+            <img class="im1" src="im/зам3.jpeg" alt="Заместитель">
+            <p class="ph2"> Заместитель председателя </p>
+        </div>
+
+        <div class="photo-box">
+            <p class="ph1"> Савицкий Вадим Валерьянович </p>
+            <img class="im1" src="im/зам4.jpeg" alt="Заместитель">
+            <p class="ph2"> Заместитель председателя </p>
+        </div>
     </div>
+</div>
 
- <script>
-document.addEventListener('DOMContentLoaded', function () {
+<div class="nov">
+    <h1>Фотогалерея города</h1>
+    <p>Лучшие фотографии нашего города</p>
+</div>
 
-    document.querySelectorAll('.gallery-img').forEach(function (img) {
+<p class="gal" id="gal"> Фотографии Столбцов </p>
 
-        let originalHeight = img.offsetHeight; // запоминаем исходный размер
-        let enlarged = false;
+<ul id="thumbs">
+    <li><img src="im/1_1.png" alt="Столбцы фото 1"></li>
+    <li><img src="im/2_1.jpg" alt="Столбцы фото 2"></li>
+    <li><img src="im/3_1.jpg" alt="Столбцы фото 3"></li>
+    <li><img src="im/4_1.jpg" alt="Столбцы фото 4"></li>
+    <li><img src="im/5_1.jpg" alt="Столбцы фото 5"></li>
+    <li><img src="im/6_1.jpg" alt="Столбцы фото 6"></li>
+    <li><img src="im/7_1.jpg" alt="Столбцы фото 7"></li>
+    <li><img src="im/8_1.jpg" alt="Столбцы фото 8"></li>
+    <li><img src="im/9_1.jpg" alt="Столбцы фото 9"></li>
+</ul>
 
-        img.onclick = function () {
-            if (!enlarged) {
-                img.style.height = (originalHeight + 140) + 'px'; // увеличиваем
-                enlarged = true;
-            } else {
-                img.style.height = originalHeight + 'px'; // возвращаем как было
-                enlarged = false;
-            }
-        };
 
-    });
+<footer class="footer">
+    <div class="footer-nav">
+        <a href="index.html">Главная</a>
+        <a href="news.html">Новости</a>
+        <a href="about.html">О городе</a>
+        <a href="history.html">История</a>
+    </div>
+    <p class="copyright">© 2025. Город Столбцы. Официальный сайт.</p>
+</footer>
 
-});
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
